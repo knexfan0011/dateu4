@@ -17,3 +17,4 @@ Missing features (lack of time):
 -removal of redundant fields (ex. Profile)
 -Distribution of webController functionality to multiple files
 -removal of redundant/unused functionality
+-javadoc
