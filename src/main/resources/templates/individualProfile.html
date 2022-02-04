@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.0/dist/quartz/bootstrap.min.css"
+    >
+</head>
+<body>
+<div class="jumbotron">
+    <h1 class="display-4">Personal profile:</h1>
+    <table>
+        <thead>
+        <tr>
+            <td>User-ID</td>
+            <td>Nickname</td>
+            <td>Hornlength</td>
+            <td>Birthday</td>
+            <td>Gender</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="text-align:center" th:text="${profile.id}">num</td>
+            <td style="text-align:center" th:text="${profile.nickname}">nick</td>
+            <td style="text-align:center" th:text="${profile.hornlength}">len</td>
+            <td style="text-align:center" th:text="${profile.birthdate}">date</td>
+            <td style="text-align:center" th:text="(${profile.gender}==0)? w : ((${profile.gender}==1)? m : d)">gender</td>
+            <!--td style="text-align:center" th:text="${profile.gender}">gender</td-->
+            <!--td th:text="${profile}? #{true} : #{false}">yes</td-->
+        </tr>
+        </tbody>
+    </table>
+    <form>
+        <input type="text" data-th-value="${profile.nickname}" readonly>
+        <input type="text" data-th-value="${profile.hornlength}" readonly>
+        <input type="text" data-th-value="${profile.gender}" readonly>
+    </form>
+    Dohles Form:<br>
+    <form data-th-object="${profile}" data-th-action="@{/overwriteProfile}" method="post">
+        <input type="text" data-th-field="*{id}" hidden>
+
+        <div class="mb-3">
+            <label for="nicknameInput" class="form-label">Nickname</label>
+            <input type="text" data-th-field="*{nickname}" id="nicknameInput" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionInput" class="form-label">Description</label>
+            <input type="text" data-th-field="*{description}" id="descriptionInput" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="hornlengthInput" class="form-label">Hornlaenge</label>
+            <input type="text" data-th-field="*{hornlength}" id="hornlengthInput" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="genderInput" class="form-label">Gender</label>
+            <select data-th-field="*{gender}" id="genderInput" class="form-control">
+                <option value=0 style="background-color:grey">Male</option>
+                <option value=1 style="background-color:grey">Female</option>
+                <option value=2 style="background-color:grey">Non-Bin</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="genderAttractedInput" class="form-label">AttractedToGender</label>
+            <select data-th-field="*{attractedToGender}" id="genderAttractedInput" class="form-control">
+                <option value=0 style="background-color:grey">Male</option>
+                <option value=1 style="background-color:grey">Female</option>
+                <option value=2 style="background-color:grey">Non-Bin</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="birthdateInput" class="form-label">Birthdate</label>
+            <input type="date" data-th-field="*{birthdate}" id="birthdateInput" class="form-control">
+        </div>
+
+        <button th:if="${editable}" type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+
+    <img id="imgTest" th:src="${'/api/photo/' + profilePhotoName}"  alt="This is where img should be pls send help if you see this"><br>
+    All images:<br>
+    <div>
+        <table>
+            <tr>
+                <th:block th:each="photoName: ${allPhotoNames}">
+                    <td>
+                        <img th:src="${'/api/photo/' + photoName}" alt="This is where multiple images should be">
+                    </td>
+                </th:block>
+            </tr>
+        </table>
+    </div>
+    <!--table>
+        <tr th:block th:each="photoName : ${allPhotoNames}">
+            <td th:text="${photoName}">
+                <!-img th:src="${'/api/photo/' + ${photoName}}" alt="This is one of (many?) photos">
+                replaceableContent
+            </td>
+        </tr th:block>
+    </table-->
+</div>
+</body>
+</html>

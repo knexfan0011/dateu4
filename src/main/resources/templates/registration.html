@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/register" method="POST">
+    <div th:text="${attr}">attr</div> <br>
+
+    <label for="nickname">usrName:</label>
+    <input type="text" id="nickname" name="nickname"><br>
+
+    <label for="password">password:</label>
+    <input type="text" id="password" name="password"><br>
+
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email"><br>
+
+    <label for="birthdate">birthdate:</label>
+    <input type="date" id="birthdate" name="birthdate"><br>
+
+    <label for="hornlength">hornlength:</label>
+    <input type="number" id="hornlength" name="hornlength"><br>
+
+    <label for="gender">gender:</label>
+    <select id="gender" name="gender">
+        <option value=0>Male</option>
+        <option value=1>Female</option>
+        <option value=2>Non-Bin</option>
+    </select><br>
+
+    <label for="attractedToGender">attractedTo:</label>
+    <select id="attractedToGender" name="attractedToGender">
+        <option value=0>Male</option>
+        <option value=1>Female</option>
+        <option value=2>Non-Bin</option>
+        <option value=>Pan</option><!-- Pan modeled as null -->
+    </select><br>
+
+    <label for="description">description:</label>
+    <input type="text" style="word-break: break-word;" id="description" name="description"><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

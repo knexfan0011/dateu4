@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.0/dist/quartz/bootstrap.min.css"
+    >
+</head>
+<body>
+<div class="jumbotron">
+    <h1 class="display-4">sEaRcH</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>User-ID</td>
+                <td>Nickname</td>
+                <td>Hornlength</td>
+                <td>Birthday</td>
+                <td>Gender</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="profile : ${profiles}">
+                <td style="text-align:center" th:text="${profile.id}">id</td>
+                <td style="text-align:center" th:text="${profile.nickname}">nick</td>
+                <td style="text-align:center" th:text="${profile.hornlength}">len</td>
+                <td style="text-align:center" th:text="${profile.birthdate}">date</td>
+                <td style="text-align:center" th:text="(${profile.gender}==0)? w : ((${profile.gender}==1)? m : d)">gender</td>
+                <!--td style="text-align:center" th:text="${profile.gender}">gender</td-->
+                <!--td th:text="${profile}? #{true} : #{false}">yes</td-->
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

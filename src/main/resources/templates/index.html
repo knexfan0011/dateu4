@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.0/dist/quartz/bootstrap.min.css"
+    >
+</head>
+<body>
+<nav>
+    <div>
+        <a href="/" class="here">Home</a>
+        <a th:with="baseUrl=(${someoneIsLoggedIn} ? '/logout' : '/login')"
+           th:href="@{${baseUrl}}"
+           th:text="${someoneIsLoggedIn} ? 'Logout' : 'Login'">loginOrLogoutPlaceholder</a>
+        <a th:with="baseUrl=(${someoneIsLoggedIn} ? '/profile/'+${loggedInProfileId} : '/register')"
+           th:href="@{${baseUrl}}"
+           th:text="${someoneIsLoggedIn} ? 'MyProfile' : 'Register'">myProfileOrRegisterPlaceholder</a>
+        <a href="/discovery">OtherProfiles</a>
+        <!--input id="srchbar" type="search" placeholder="Search"-->
+    </div>
+</nav>
+<div class="jumbotron">
+    <h1 class="display-4">index, <br>
+        <p style="display:inline" th:text="|There are ${totalProfiles} awesome unicorns!|">num_placeholder</p></h1>
+</div>
+</body>
+</html>

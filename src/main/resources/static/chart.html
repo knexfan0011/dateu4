@@ -1,0 +1,16 @@
+<html lang="de"><head>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+</head>
+<body><div class="ct-chart .ct-golden-section"></div>
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script>
+    window.onload = () => {
+        const months = [...Array(12)].map((_, i) =>
+            new Date(0,++i,0).toLocaleDateString("de", {month: "short"}));
+        fetch( "/api/stat/chart" )
+            .then( response => response.json() )
+            .then( obj => new Chartist.Bar( ".ct-chart", { labels: months,
+                series: obj.data } ) );
+    }
+</script></body></html>

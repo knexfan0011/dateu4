@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            padding:16px;
+            text-align: center;
+            border-bottom: 1px solid #888;
+            border-top: 1px solid #888;
+            border-left: 2px solid #888;
+            border-right: 2px solid #888;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>ProfilePic</th>
+            <th>Nickname</th>
+            <th>HornLength</th>
+            <th>Gender</th>
+            <th style="text-align: left">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="profile, iter : ${profileList}">
+            <td>
+                <a th:href="@{'/profile/'+${profile.id}}">
+                    <img th:width="100" th:src="${'/api/photo/' + imageNameList.get(iter.index)}" alt="This is where corresponding profile pic">
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/profile/'+${profile.id}}">
+                    <span th:text="${profile.nickname}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${profile.hornlength}"></span>
+            </td>
+            <td>
+                <span th:text="${profile.gender}"></span>
+            </td>
+            <td style="text-align: left">
+                <span th:text="${profile.description}"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

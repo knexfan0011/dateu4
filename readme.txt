@@ -1,0 +1,1 @@
+Assumption: Unicorn Bilder sind in "userDir/fs/img/" hinterlegt
